@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= couple %> — Accesso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+  <body class="login-page">
+    <main class="boarding-pass-wrapper">
+      <div class="boarding-pass-image-container">
+        <!-- L'immagine completa dell'invito per il login -->
+        <img 
+          src="/images/Login2.png" 
+          srcset="/images/loginMobile1.png 768w, /images/Login2.png 1200w"
+          alt="Invito Matrimonio" 
+          class="full-invite-image">
+        
+        <!-- Sovrapposizione del form di login esattamente sopra il riquadro bianco dell'immagine -->
+        <div class="login-overlay">
+          <% if (error) { %>
+            <div class="bp-alert-overlay"><%= error %></div>
+          <% } %>
+          <form class="bp-login-form-overlay" action="/login" method="post">
+            <input 
+            id="password" 
+            name="password" 
+            type="password" 
+            required 
+            placeholder="Inserisci la password dell'invito"
+            data-mobile-placeholder="Password">
+            <button type="submit" class="bp-btn-overlay">ACCEDI ALL'INVITO</button>
+          </form>
+        </div>
+      </div>
+    </main>
+    <script>
+  function updatePlaceholder() {
+    const input = document.getElementById('password');
+    if (window.innerWidth <= 768) {
+      input.placeholder = input.dataset.mobilePlaceholder;
+    } else {
+      input.placeholder = "Inserisci la password dell'invito";
+    }
+  }
+
+  updatePlaceholder();
+  window.addEventListener('resize', updatePlaceholder);
+</script>
+  </body>
+</html>

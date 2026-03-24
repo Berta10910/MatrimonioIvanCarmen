@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= couple %> — Accesso</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Cormorant+Garamond:wght@300;400;500&display=swap">
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="login-page">
+  <main class="login-container">
+   <div class="logo-wrapper">
+      <img src="/images/logo.png" alt="Logo Carmen e Ivan" class="login-logo">
+    </div>
+    <h1 class="title">Benvenuti</h1>
+    <p class="subtitle">Inserite la password per visualizzare il vostro invito ufficiale</p>
+    <% if (error) { %>
+      <div class="alert"><%= error %></div>
+    <% } %>
+    <form class="login-form" action="/login" method="post">
+      <label for="password">Password</label>
+      <input id="password" name="password" type="password" required placeholder="La password degli invitati">
+      <button type="submit" class="btn-primary">Accedi</button>
+    </form>
+  </main>
+</body>
+</html>

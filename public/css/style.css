@@ -1,0 +1,245 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  background-color: #c4d7ed;
+  background-image: url('/images/sfondocorretto.png');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  color: #1a3c5e;
+  font-family: "Cormorant Garamond", Garamond, serif;
+}
+
+/* Login Page Image-based Approach */
+.boarding-pass-wrapper {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+
+.boarding-pass-image-container {
+  position: relative;
+  width: 100%;
+  max-width: 1100px; /* Dimensione massima per l'invito */
+  overflow: hidden;
+}
+
+.full-invite-image {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Overlay per il form di login */
+.login-overlay {
+  position: absolute;
+  bottom: 31%;
+  left: 29.5%;
+  width: 40.5%;
+  z-index: 10;
+}
+
+.bp-login-form-overlay {
+  display: flex;
+  gap: 0;
+  background: white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.bp-login-form-overlay input {
+  flex: 1;
+  padding: 12px 15px;
+  border: 1px solid #e0e0e0;
+  border-right: none;
+  border-radius: 6px 0 0 6px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: white;
+  color: #1a3c5e;
+}
+
+.bp-btn-overlay {
+  background: #c3cbe5;
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 0 6px 6px 0;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+
+.bp-btn-overlay:hover {
+  background: #a9b3d1;
+  transform: scale(1.02);
+}
+
+.bp-alert-overlay {
+  background: rgba(197, 48, 48, 0.9);
+  color: white;
+  padding: 8px 15px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  margin-bottom: 10px;
+  text-align: center;
+}
+@media (max-width: 768px) {
+
+  .login-overlay {
+    position: absolute;
+    bottom: 42.5%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70%;
+  }
+
+  .full-invite-image {
+  width: 100%;
+  height: 92vh;
+  object-fit: cover;
+}
+
+  .bp-login-form-overlay {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  background: transparent; /* ❌ niente bianco */
+  box-shadow: none;
+}
+
+  .bp-login-form-overlay input {
+  padding: 10px 12px;
+  border: none;
+  border-bottom: 1px solid rgba(26, 60, 94, 0.3);
+  background: transparent;
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.95rem;
+  color: #1a3c5e;
+  text-align: center;
+  outline: none;
+  transition: all 0.3s ease;
+}
+  .boarding-pass-image-container {
+    max-width: none;
+    width: 100%;
+    height: 100vh;
+  }
+  .boarding-pass-wrapper {
+    padding: 0;
+  }
+  .bp-btn-overlay {
+  background: rgba(26, 60, 94, 0.15);
+  color: #1a3c5e;
+  border: 1px solid rgba(26, 60, 94, 0.3);
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+}
+
+
+/* Home / Index Styles */
+.site-header {
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+}
+
+.names {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.2rem;
+  color: #1a3c5e;
+}
+
+.nav {
+  display: flex;
+  gap: 40px;
+  align-items: center;
+}
+
+.nav a {
+  text-decoration: none;
+  color: #1a3c5e;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.content {
+  max-width: 1100px;
+  margin: 60px auto;
+  padding: 0 40px;
+}
+
+.hero-invite {
+  background: white;
+  padding: 80px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+  margin-bottom: 50px;
+}
+
+.hero-invite .title {
+  font-family: "Great Vibes", cursive;
+  font-size: 5rem;
+  margin: 0;
+}
+
+.info-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-bottom: 50px;
+}
+
+.info-card {
+  background: white;
+  padding: 50px;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+}
+
+.rsvp-section {
+  background: white;
+  padding: 80px;
+  border-radius: 20px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 1100px) {
+  .boarding-pass {
+    width: 95%;
+    height: auto;
+    flex-direction: column;
+  }
+  .bp-right {
+    border-left: none;
+    border-top: 2px dashed rgba(26, 60, 94, 0.1);
+  }
+  .decor-passport, .decor-stamp, .decor-tags, .decor-compass {
+    display: none;
+  }
+}
+

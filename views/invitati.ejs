@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title><%= couple %> — Invitati</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap">
+  <link rel="stylesheet" href="/css/style.css?v=2">
+</head>
+<body>
+  <header class="site-header">
+    <div class="brand"><span class="names"><%= couple %></span></div>
+    <nav class="nav">
+      <a href="/">Home</a>
+      <a href="/invitati" class="active">Invitati</a>
+      <form class="logout" action="/logout" method="post">
+        <button type="submit">Logout</button>
+      </form>
+    </nav>
+  </header>
+  <main class="content">
+    <section class="list-section">
+      <h1 class="title">Invitati</h1>
+      <ul class="guest-list">
+        <% if (invitati && invitati.length) { %>
+          <% invitati.forEach(function(item){ %>
+            <li class="guest">
+              <span class="guest-name"><%= item.nome %></span>
+              <% if (item.note) { %><span class="guest-note"><%= item.note %></span><% } %>
+            </li>
+          <% }) %>
+        <% } else { %>
+          <li class="guest empty">Nessun invitato presente al momento</li>
+        <% } %>
+      </ul>
+    </section>
+  </main>
+  <footer class="site-footer">
+    <span>Celebratione di <%= couple %></span>
+  </footer>
+</body>
+</html>
