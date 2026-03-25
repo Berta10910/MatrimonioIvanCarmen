@@ -796,7 +796,7 @@ html, body {
 /* Mobile Adjustments */
 @media (max-width: 768px) {
   .hero-section { padding: 40px 15px; margin-bottom: 1px; }
-  .names-title { font-size: 4.5rem; }
+  .names-title { font-size: 3.8rem; }
   .wedding-subtitle-large { font-size: 1.9rem; }
   .countdown-box-v2 { padding: 15px; width: 95%; }
   .cd-unit span { font-size: 1.8rem; }
