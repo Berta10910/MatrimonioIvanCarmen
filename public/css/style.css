@@ -163,6 +163,16 @@ html, body {
   cursor: pointer;
   transition: all 0.3s ease;
 }
+/* Decorazioni esterne (Sfondo) */
+.decor {
+  position: fixed;
+  z-index: 1; /* Sotto al contenuto principale (z-index: 2) */
+  pointer-events: none;
+  opacity: 0.8; /* Molto trasparente */
+}
+.decor-compass { top: 50px; left: -30px; width: 180px; }
+.decor-stamp { top: 40px; right: -20px; width: 160px; transform: rotate(12deg); }
+.decor-plane { bottom: 80px; left: 20px; width: 80px; }
 }
 
 
@@ -193,8 +203,8 @@ html, body {
   pointer-events: none;
   opacity: 0.8; /* Molto trasparente */
 }
-.decor-compass { top: 50px; left: -30px; width: 180px; }
-.decor-stamp { top: 40px; right: -20px; width: 160px; transform: rotate(12deg); }
+.decor-compass { top: 50px; left: -30px; width: 280px; }
+.decor-stamp { top: 40px; right: -20px; width: 260px; transform: rotate(12deg); }
 .decor-plane { bottom: 80px; left: 20px; width: 80px; }
 
 /* Hero Section */
@@ -423,7 +433,7 @@ html, body {
 }
 .label{
       font-weight: 800;
-    font-size: 5vw;
+    font-size: 1.3rem;
     font-family: serif;
     color: #1a3c5e;
 }
