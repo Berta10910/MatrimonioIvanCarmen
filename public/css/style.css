@@ -168,7 +168,7 @@ html, body {
   position: fixed;
   z-index: 1; /* Sotto al contenuto principale (z-index: 2) */
   pointer-events: none;
-  opacity: 0.8; /* Molto trasparente */
+  opacity: 0.4; /* Molto trasparente */
 }
 .decor-compass { top: 50px; left: -30px; width: 180px; }
 .decor-stamp { top: 40px; right: -20px; width: 160px; transform: rotate(12deg); }
@@ -201,7 +201,7 @@ html, body {
   position: fixed;
   z-index: 1; /* Sotto al contenuto principale (z-index: 2) */
   pointer-events: none;
-  opacity: 0.8; /* Molto trasparente */
+  opacity: 0.4; /* Molto trasparente */
 }
 .decor-compass { top: 50px; left: -30px; width: 280px; }
 .decor-stamp { top: 40px; right: -20px; width: 260px; transform: rotate(12deg); }
@@ -628,10 +628,11 @@ html, body {
 
 .registry-intro, .registry-text {
   font-family: "Cormorant Garamond", serif;
-  font-size: 1.4rem;
+  font-size: 1.7rem;
   color: #1a3c5e;
   line-height: 1.6;
   margin-bottom: 15px;
+  font-weight: 900;
 }
 
 .registry-signature {
