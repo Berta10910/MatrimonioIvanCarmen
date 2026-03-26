@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3001
 const PASSWORD = process.env.PASSWORD || 'IvanCarmen2026'
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'AdminCarmen'
 const SESSION_SECRET = process.env.SESSION_SECRET || 'change-this-secret'
+const ExcelJS = require('exceljs');
 
 const { Pool } = require("pg");
 
@@ -48,6 +49,56 @@ app.get('/', requireAuth, (req, res) => {
     isAdmin: req.session.isAdmin || false
   })
 })
+
+app.get('/export-excel', requireAuth, requireAdmin, async (req, res) => {
+  try {
+    const result = await pool.query("SELECT * FROM rsvps ORDER BY created_at DESC");
+    const rsvps = result.rows;
+
+    const workbook = new ExcelJS.Workbook();
+    const worksheet = workbook.addWorksheet('Invitati');
+
+    // Colonne
+    worksheet.columns = [
+      { header: 'Nome', key: 'nome', width: 25 },
+      { header: 'Presenza', key: 'presenza', width: 15 },
+      { header: 'Numero Persone', key: 'partecipanti_num', width: 18 },
+      { header: 'Partecipanti', key: 'partecipanti_nomi', width: 30 },
+      { header: 'Allergie', key: 'allergie', width: 25 },
+      { header: 'Bambini', key: 'bambini_eta', width: 20 },
+      { header: 'Messaggio', key: 'messaggio', width: 40 },
+      { header: 'Data', key: 'created_at', width: 25 }
+    ];
+
+    // Dati
+    rsvps.forEach(r => {
+      worksheet.addRow({
+        ...r,
+        presenza: r.presenza === 'si' ? 'SÌ' : 'NO'
+      });
+    });
+
+    // Header bold
+    worksheet.getRow(1).font = { bold: true };
+
+    res.setHeader(
+      'Content-Type',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+    );
+
+    res.setHeader(
+      'Content-Disposition',
+      'attachment; filename=invitati.xlsx'
+    );
+
+    await workbook.xlsx.write(res);
+    res.end();
+
+  } catch (err) {
+    console.error("Errore export:", err);
+    res.status(500).send("Errore export");
+  }
+});
 
 app.get('/login', (req, res) => {
   // Rimosso il redirect automatico se già autenticato per permettere il cambio utente/admin
