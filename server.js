@@ -93,13 +93,24 @@ app.post('/logout', (req, res) => {
 
 app.get('/invitati', requireAuth, requireAdmin, async (req, res) => {
   try {
-    const result = await pool.query("SELECT * FROM rsvps ORDER BY created_at DESC");
-    res.render('invitati', { rsvps: result.rows, couple: 'Carmen & Ivan' });
+    const result = await pool.query(`
+      SELECT * FROM rsvps 
+      ORDER BY created_at DESC
+    `);
+
+    res.render('invitati', { 
+      rsvps: result.rows, 
+      couple: 'Carmen & Ivan' 
+    });
+
   } catch (err) {
     console.error("Errore DB:", err);
-    res.render('invitati', { rsvps: [], couple: 'Carmen & Ivan' });
+    res.render('invitati', { 
+      rsvps: [], 
+      couple: 'Carmen & Ivan' 
+    });
   }
-})
+});
 
 app.post('/rsvp', requireAuth, async (req, res) => {
   const { 

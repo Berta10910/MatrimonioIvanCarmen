@@ -62,7 +62,15 @@
   <div class="guests-container">
     <a href="/" class="back-btn">← Torna al sito</a>
     <h1 style="font-family: 'Great Vibes', cursive; font-size: 3rem; color: #1a3c5e; text-align: center;">Lista Invitati</h1>
-    
+    <div style="margin-bottom:20px;">
+  <strong>Totale risposte:</strong> <%= rsvps.length %><br>
+
+  <strong>Presenti:</strong> 
+  <%= rsvps.filter(r => r.presenza === 'si').length %><br>
+
+  <strong>Non presenti:</strong> 
+  <%= rsvps.filter(r => r.presenza === 'no').length %>
+</div>
     <table>
       <thead>
         <tr>
