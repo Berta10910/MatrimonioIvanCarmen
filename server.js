@@ -131,7 +131,9 @@ app.post('/rsvp', requireAuth, async (req, res) => {
       [nome, presenza, partecipanti_num, partecipanti_nomi, allergie, bambini_eta, messaggio]
     );
 
-    res.send('<script>alert("Grazie! Conferma inviata."); window.location.href="/";</script>');
+    req.session.destroy(() => {
+  res.send('<script>alert("Grazie! Conferma inviata."); window.location.href="/login";</script>');
+  });
   } catch (err) {
     console.error("Errore DB:", err);
     res.status(500).send("Errore database");
