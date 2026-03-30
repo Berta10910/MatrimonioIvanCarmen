@@ -828,4 +828,170 @@ html, body {
   .footer-logo { width: 350px; }
   .footer-logo-container { padding-bottom: 1px; }
 }
+.iban-envelope {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
 
+.envelope {
+  position: relative;
+  width: 90%;
+  max-width: 320px;
+  height: 220px;
+}
+.envelope-body {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #1a3c5e;
+  border-radius: 12px;
+  z-index: 2; /* sopra la lettera */
+}
+
+.flap {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #c4d7ed;
+  clip-path: polygon(0 0, 50% 65%, 100% 0);
+  transform-origin: top;
+  transition: transform 0.5s ease;
+  z-index: 4;
+}
+
+.letter {
+  position: absolute;
+  width: 90%;
+  left: 5%;
+  height: 200px;
+  background: #fffdf9;
+  border-radius: 10px;
+  padding: 18px;
+  text-align: center;
+
+  top: 0;
+
+  /* 👇 posizione giusta (dentro ma nascosta) */
+  transform: translateY(5%);
+
+  transition: transform 0.7s ease;
+  z-index: 1;
+
+  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  transition: transform 0.5s ease;
+}
+
+/* ===== ANIMAZIONE ===== */
+
+
+/* 1. flap si apre */
+.envelope.open .flap {
+  transform: rotateX(180deg);
+  transition-delay: 0s;
+}
+.envelope:not(.open) .flap {
+  transition-delay: 0.5s; /* 👈 aspetta la lettera */
+  transition-delay: 0s; /* rientra subito */
+}
+
+/* 2. lettera esce sopra */
+.envelope.open .letter {
+  transform: translateY(-55%);
+  z-index: 5;
+  transition-delay: 0.3s; /* 👈 esce dopo il flap */
+}
+/* LABEL IBAN */
+.iban-label {
+  font-size: 13px;
+  letter-spacing: 3px;
+  color: #1a3c5e; /* più delicato */
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+/* IBAN */
+.iban-text {
+  font-size: 14px; /* 👈 più grande */
+  margin: 10px 0;
+  color: #1a3c5e;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 600;
+  letter-spacing: 1px; /* 👈 più leggibile */
+  word-break: break-all;
+}
+
+/* NOMI */
+.iban-names {
+  font-size: 15px; /* 👈 più grande */
+  color: #1a3c5e; /* più elegante */
+  margin-bottom: 5px;
+  font-family: "Cormorant Garamond", serif;
+  font-weight: 500;
+  line-height: 1.4; /* 👈 aria tra le righe */
+}
+
+/* BOTTONE */
+.copy-btn {
+  background: transparent;
+  border: 1px solid #1a3c5e;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 12px;
+  color: #1a3c5e;
+  cursor: pointer;
+  width: 100%;
+  max-width: 200px;
+}
+
+.copy-btn:hover {
+  background: #1a3c5e;
+  color: white;
+}
+
+/* MOBILE */
+@media (max-width: 600px) {
+
+  .iban-envelope {
+    margin: 50px 0;
+  }
+
+  .envelope {
+    width: 85%;
+    max-width: 320px;
+    height: 200px;
+  }
+
+  .letter {
+    height: 180px;
+    padding: 16px;
+  }
+
+  .iban-text {
+    font-size: 16px;
+  }
+
+  .iban-names {
+    font-size: 14px;
+  }
+
+  .copy-btn {
+    font-size: 14px;
+    padding: 10px 16px; /* 👈 più tappabile */
+  }
+  .letter {
+    transition: transform 0.45s ease;
+  }
+
+  .flap {
+    transition: transform 0.4s ease;
+  }
+  .iban-envelope {
+  -webkit-tap-highlight-color: transparent;
+}
+.envelope:active {
+  transform: scale(0.97);
+}
+}

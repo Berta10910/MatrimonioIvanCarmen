@@ -196,6 +196,28 @@
       </div>
     </section>
 
+<div class="iban-envelope" onclick="toggleEnvelope()">
+  <div class="envelope" id="envelope">
+
+    <div class="flap"></div>
+
+    <!-- corpo busta (copre la lettera) -->
+    <div class="envelope-body"></div>
+
+    <div class="letter">
+      <p class="iban-label">IBAN</p>
+      <p class="iban-text" id="ibanText">IT57R0623010820000047782443</p>
+
+      <p class="iban-names">Marotta Ivan<br>Castagnozzi Carmen</p>
+
+      <button class="copy-btn" onclick="copyIBAN(event)">
+        📋 Copia IBAN
+      </button>
+    </div>
+
+  </div>
+</div>
+
     <!-- CHIUSURA LOGO -->
     <div class="footer-logo-container">
       <img src="/images/logo12.png" alt="Logo Ivan e Carmen" class="footer-logo">
@@ -243,6 +265,27 @@ function updateCountdown() {
 updateCountdown();
 setInterval(updateCountdown, 1000); // Aggiorna ogni secondo
 </script>
+<script>
+function toggleEnvelope() {
+  const envelope = document.getElementById("envelope");
+  envelope.classList.toggle("open");
 
+  if (navigator.vibrate) {
+    navigator.vibrate(30);
+  }
+}
+
+function copyIBAN(event) {
+  event.stopPropagation();
+
+  const iban = document.getElementById("ibanText").innerText;
+  navigator.clipboard.writeText(iban);
+
+  event.target.innerText = "Copiato!";
+  setTimeout(() => {
+    event.target.innerText = "📋 Copia IBAN";
+  }, 1500);
+}
+</script>
 </body>
 </html>
