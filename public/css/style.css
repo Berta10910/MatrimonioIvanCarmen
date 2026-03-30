@@ -954,40 +954,40 @@ html, body {
 @media (max-width: 600px) {
 
   .iban-envelope {
-    margin: 40px 0;
-    transform: scale(0.85); /* Leggermente più grande per leggibilità */
+    margin: 30px 0;
+    transform: scale(0.75); /* Ridotto da 0.85 per renderla più piccolina */
   }
 
   .envelope {
-    max-width: 280px;
-    height: 180px;
+    max-width: 240px; /* Ridotto da 280px */
+    height: 150px;    /* Ridotto da 180px */
   }
 
   .letter {
-    height: 160px;
-    padding: 12px;
+    height: 135px;    /* Ridotto da 160px */
+    padding: 10px;    /* Ridotto padding per eleganza */
   }
 
   .iban-label {
-    font-size: 10px;
+    font-size: 9px;   /* Più piccolo e pulito */
     margin-bottom: 2px;
   }
 
   .iban-text {
-    font-size: 14px; /* Un po' più grande per leggerlo bene */
-    margin: 6px 0;
-    letter-spacing: 0.2px;
+    font-size: 13px;  /* Più compatto */
+    margin: 4px 0;
+    letter-spacing: 0.1px;
   }
 
   .iban-names {
-    font-size: 12px;
-    margin-bottom: 6px;
+    font-size: 11px;  /* Più sottile */
+    margin-bottom: 5px;
   }
 
   .copy-btn {
-    font-size: 12px;
-    padding: 6px 12px;
-    min-width: 110px;
+    font-size: 11px;  /* Più discreto */
+    padding: 5px 10px;
+    min-width: 100px;
   }
 
   .letter {
