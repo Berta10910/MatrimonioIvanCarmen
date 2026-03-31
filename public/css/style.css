@@ -1063,11 +1063,9 @@ html, body {
   transform: scale(1.05);
 }
 
-/* Nasconde sparkles e linee vecchie */
-.iban-hint::before, .iban-hint::after, .iban-hint span {
-  display: none;
+.heart {
+  color: #3b6ea8;
 }
-
 /* MOBILE */
 @media (max-width: 600px) {
   .iban-envelope {
