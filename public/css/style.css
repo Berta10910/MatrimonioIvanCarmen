@@ -1065,6 +1065,7 @@ html, body {
 
 .heart {
   color: #3b6ea8;
+  font-family: "Cormorant Garamond", serif;
 }
 /* MOBILE */
 @media (max-width: 600px) {
