@@ -831,16 +831,56 @@ html, body {
 .iban-envelope {
   width: 100%;
   display: flex;
-  justify-content: center;
-  transform: scale(0.9); /* Ingrandito da 0.7 per desktop */
-  margin: 60px 0;
+  flex-direction: column;
+  align-items: center;
+  margin: 100px 0;
+  position: relative;
+  perspective: 1200px;
+}
+
+.iban-hint {
+  font-family: "Great Vibes", cursive;
+  font-size: 2.4rem;
+  color: #1a3c5e;
+  margin-bottom: 30px;
+  text-align: center;
+  opacity: 0.9;
+  animation: hintFloat 3s infinite ease-in-out;
+}
+
+@keyframes hintFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-5px); }
 }
 
 .envelope {
   position: relative;
-  width: 100%;
-  max-width: 300px; /* Ingrandito da 240px */
-  height: 190px;    /* Ingrandito da 150px */
+  width: 360px;
+  height: 240px;
+  background: #fdfbf7;
+  border-radius: 8px;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.envelope:hover {
+  transform: translateY(-5px) scale(1.01);
+}
+
+/* Corpo della busta - Blu Scuro */
+.aprimi-text {
+  position: absolute;
+  top: 20px; /* 👈 Posizionato in alto nel flap azzurro */
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: "Great Vibes", cursive;
+  font-size: 3rem; /* 👈 Un po' più piccolo per stare meglio sul flap */
+  margin: 0;
+  line-height: 1;
+  color: #ffffff; /* 👈 Blu scuro per risaltare sul flap azzurro */
+  z-index: 6;
+  transition: opacity 0.3s ease;
 }
 
 .envelope-body {
@@ -848,159 +888,208 @@ html, body {
   width: 100%;
   height: 100%;
   background: #1a3c5e;
-  border-radius: 12px;
-  z-index: 2;
+  border-radius: 8px;
+  z-index: 3;
+  /* Taglio a V per mostrare la lettera */
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 50% 50%, 100% 0);
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 30px; /* 👈 Spazio per icone e CLICCA QUI in basso */
+  box-shadow: inset 0 2px 20px rgba(0,0,0,0.4);
 }
 
+.envelope-content {
+  text-align: center;
+  color: white; /* 👈 Bianco per risaltare sul corpo blu scuro */
+  z-index: 6;
+  transition: opacity 0.3s ease;
+}
+
+.clicca-qui {
+  font-family: "Cormorant Garamond", serif;
+  font-size: 0.8rem;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  margin: 5px 0;
+  opacity: 0.8;
+}
+
+.envelope-decor {
+  font-size: 0.9rem;
+  opacity: 0.6;
+}
+
+/* Nasconde "Aprimi" quando si apre */
+.envelope.open .aprimi-text {
+  opacity: 0;
+}
+
+/* Lembo di chiusura - Blu Chiaro */
 .flap {
   position: absolute;
   width: 100%;
   height: 100%;
-  background: #c4d7ed;
-  clip-path: polygon(0 0, 50% 65%, 100% 0);
+  background: #a5c2e0;
+  clip-path: polygon(0 0, 50% 55%, 100% 0);
   transform-origin: top;
-  transition: transform 0.5s ease;
   z-index: 4;
+  border-radius: 8px 8px 0 0;
+  box-shadow: inset 0 -2px 10px rgba(0,0,0,0.1);
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* Sigillo di ceralacca */
+.wax-seal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 65px; 
+  height: 65px;
+  background: #a5c2e0;
+  border-radius: 50%;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a3c5e;
+  font-size: 1.8rem;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.2), inset 0 0 15px rgba(255,255,255,0.5);
+  border: 2px solid rgba(255,255,255,0.3);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.wax-seal::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  height: 80%;
+  border: 1px solid rgba(26, 60, 94, 0.2);
+  border-radius: 50%;
+}
+
+.envelope.open .wax-seal {
+  opacity: 0;
+  transform: translate(-50%, -150%) scale(0.5);
+}
+
+/* Lettera interna */
 .letter {
   position: absolute;
-  width: 90%;
-  left: 5%;
-  height: 170px;   /* Ingrandito da 140px */
-  padding: 15px;   /* Più respiro per desktop */
-  background: #fffdf9;
-  border-radius: 10px;
-  
-  /* Centratura perfetta del contenuto */
+  width: 94%;
+  left: 3%;
+  height: 220px;
+  background: #fff;
+  border-radius: 4px;
+  padding: 30px 20px;
+  text-align: center;
+  top: 10px;
+  z-index: 2;
+  box-shadow: 0 2px 15px rgba(0,0,0,0.1);
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  text-align: center;
-
-  top: 0;
-  transform: translateY(5%);
-  transition: transform 0.7s ease;
-  z-index: 1;
-  box-shadow: 0 12px 25px rgba(0,0,0,0.15);
+  background-image: linear-gradient(rgba(255,255,255,0.9), rgba(255,255,255,0.9)), url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+  transition: transform 0.7s cubic-bezier(0.175, 0.885, 0.32, 1.1);
 }
 
-/* ===== ANIMAZIONE ===== */
-
-
-/* 1. flap si apre */
+/* Sequenza Animazione */
 .envelope.open .flap {
   transform: rotateX(180deg);
-  transition-delay: 0s;
-}
-.envelope:not(.open) .flap {
-  transition-delay: 0.5s; /* 👈 aspetta la lettera */
-  transition-delay: 0s; /* rientra subito */
+  z-index: 1;
 }
 
-/* 2. lettera esce sopra */
 .envelope.open .letter {
-  transform: translateY(-50%);
-  z-index: 5;
-  transition-delay: 0.3s; /* 👈 esce dopo il flap */
-}
-/* LABEL IBAN */
-.iban-label {
-  font-size: 11px; /* Ridotto da 13px */
-  letter-spacing: 2px;
-  color: #1a3c5e;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 600;
-  text-transform: uppercase;
-  margin-bottom: 4px;
+  transform: translateY(-80%);
+  z-index: 2; /* In primo piano quando aperta */
+  transition-delay: 0.3s;
+  box-shadow: 0 30px 60px rgba(0,0,0,0.2);
 }
 
-/* IBAN */
-.iban-text {
-  font-size: 13px; /* Ridotto da 14px */
-  margin: 5px 0;
-  color: #1a3c5e;
+.envelope.open .envelope-content {
+  opacity: 0;
+}
+
+/* Stili interni lettera */
+.iban-label {
+  font-size: 11px;
+  letter-spacing: 5px;
+  color: #888;
   font-family: "Cormorant Garamond", serif;
   font-weight: 700;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.iban-text {
+  font-size: 15px;
+  margin: 15px 0;
+  color: #1a3c5e;
+  font-family: "monospace";
+  font-weight: 600;
   letter-spacing: 0.5px;
   word-break: break-all;
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #eee;
+  width: 100%;
 }
 
-/* NOMI */
 .iban-names {
-  font-size: 13px; /* Ridotto da 15px */
+  font-size: 1.2rem;
   color: #1a3c5e;
-  margin-bottom: 8px;
-  font-family: "Cormorant Garamond", serif;
-  font-weight: 500;
-  line-height: 1.2;
+  margin: 10px 0 20px 0;
+  font-family: "Great Vibes", cursive;
 }
 
-/* BOTTONE */
 .copy-btn {
-  background: transparent;
-  border: 1px solid #1a3c5e;
-  padding: 4px 10px; /* Ridotto */
-  border-radius: 20px;
-  font-size: 11px; /* Ridotto da 12px */
-  color: #1a3c5e;
+  background: #1a3c5e;
+  color: white;
+  border: none;
+  padding: 12px 25px;
+  border-radius: 50px;
+  font-size: 13px;
+  font-weight: 600;
   cursor: pointer;
-  width: auto; /* Da 100% a auto per centrarlo meglio */
-  min-width: 120px;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(26, 60, 94, 0.2);
+}
+
+.copy-btn:hover {
+  background: #2c5a8a;
+  transform: scale(1.05);
+}
+
+/* Nasconde sparkles e linee vecchie */
+.iban-hint::before, .iban-hint::after, .iban-hint span {
+  display: none;
 }
 
 /* MOBILE */
 @media (max-width: 600px) {
-
   .iban-envelope {
-    margin: 30px 0;
-    transform: scale(0.75); /* Ridotto da 0.85 per renderla più piccolina */
+    margin: 0px 0;
+    transform: scale(0.8);
+  }
+
+  .iban-hint {
+    font-size: 1.8rem;
+    width: 120%; /* Permette al testo di stare su una riga */
   }
 
   .envelope {
-    max-width: 240px; /* Ridotto da 280px */
-    height: 150px;    /* Ridotto da 180px */
+    width: 320px;
+    height: 220px;
+  }
+
+  .aprimi-text {
+    font-size: 3.2rem;
   }
 
   .letter {
-    height: 135px;    /* Ridotto da 160px */
-    padding: 10px;    /* Ridotto padding per eleganza */
+    height: 200px;
   }
-
-  .iban-label {
-    font-size: 9px;   /* Più piccolo e pulito */
-    margin-bottom: 2px;
-  }
-
-  .iban-text {
-    font-size: 13px;  /* Più compatto */
-    margin: 4px 0;
-    letter-spacing: 0.1px;
-  }
-
-  .iban-names {
-    font-size: 11px;  /* Più sottile */
-    margin-bottom: 5px;
-  }
-
-  .copy-btn {
-    font-size: 11px;  /* Più discreto */
-    padding: 5px 10px;
-    min-width: 100px;
-  }
-
-  .letter {
-    transition: transform 0.45s ease;
-  }
-
-  .flap {
-    transition: transform 0.4s ease;
-  }
-  .iban-envelope {
-  -webkit-tap-highlight-color: transparent;
-}
-.envelope:active {
-  transform: scale(0.97);
-}
 }

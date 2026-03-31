@@ -117,6 +117,42 @@
     <!-- RIGA MINIMAL TRA RICEVIMENTO E RSVP -->
     <div class="minimal-divider-rsvp"></div>
 
+    <!-- LISTA NOZZE -->
+    <section class="card card-registry-full">
+      <div class="registry-header">
+        <h3>Lista Nozze</h3>
+      </div>
+      <div class="registry-content">
+        <p class="registry-intro">La vostra presenza in un giorno così speciale è il dono più bello.</p>
+        <p class="registry-text">Se desiderate comunque farci un regalo, potete contribuire a realizzare il nostro sogno: il <span style="white-space: nowrap;">viaggio di nozze!</span></p>
+      </div>
+    </section>
+
+<div class="iban-envelope" onclick="toggleEnvelope()">
+  <p class="iban-hint">♥ Apri la busta per i dettagli del regalo ♥</p>
+  <div class="envelope" id="envelope">
+    <div class="flap">
+      <p class="aprimi-text">Aprimi</p>
+    </div>
+    <div class="envelope-body">
+      <div class="envelope-content">
+        <p class="clicca-qui">CLICCA QUI</p>
+        <div class="envelope-decor">🌿 ♥ 🌿</div>
+      </div>
+    </div>
+    <div class="wax-seal">❤</div>
+    <div class="letter">
+      <p class="iban-label">IBAN</p>
+      <p class="iban-text" id="ibanText">IT57R0623010820000047782443</p>
+      <p class="iban-names">Marotta Ivan | Castagnozzi Carmen</p>
+      <button class="copy-btn" onclick="copyIBAN(event)">
+        📋 Copia IBAN
+      </button>
+    </div>
+  </div>
+</div>
+
+<div class="minimal-divider-rsvp"></div>
     <!-- RSVP FORM (FUORI DALLA GRID) -->
     <section class="card card-rsvp-full">
       <div class="rsvp-header">
@@ -185,38 +221,6 @@
       <div class="animated-plane">✈</div>
     </div>
   -->
-    <!-- LISTA NOZZE -->
-    <section class="card card-registry-full">
-      <div class="registry-header">
-        <h3>Lista Nozze</h3>
-      </div>
-      <div class="registry-content">
-        <p class="registry-intro">La vostra presenza in un giorno così speciale è il dono più bello.</p>
-        <p class="registry-text">Se desiderate comunque farci un regalo, potete contribuire a realizzare il nostro sogno: il viaggio di nozze!</p>
-      </div>
-    </section>
-
-<div class="iban-envelope" onclick="toggleEnvelope()">
-  <div class="envelope" id="envelope">
-
-    <div class="flap"></div>
-
-    <!-- corpo busta (copre la lettera) -->
-    <div class="envelope-body"></div>
-
-    <div class="letter">
-      <p class="iban-label">IBAN</p>
-      <p class="iban-text" id="ibanText">IT57R0623010820000047782443</p>
-
-      <p class="iban-names">Marotta Ivan | Castagnozzi Carmen</p>
-
-      <button class="copy-btn" onclick="copyIBAN(event)">
-        📋 Copia IBAN
-      </button>
-    </div>
-
-  </div>
-</div>
 
     <!-- CHIUSURA LOGO -->
     <div class="footer-logo-container">
