@@ -117,7 +117,9 @@
   let totaleAllergie = 0;
 
   rsvps.forEach(r => {
-    const num = parseInt(r.partecipanti_num) || 0;
+    const num = (r.partecipanti_num && r.partecipanti_num.trim() !== "" && !isNaN(parseInt(r.partecipanti_num)))
+  ? parseInt(r.partecipanti_num)
+  : 1;
 
     if (r.presenza === 'si') {
       totaleSi += num;
